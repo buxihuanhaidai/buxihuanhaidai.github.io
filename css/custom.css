@@ -23,6 +23,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body:has(#portfolio-home) {
+  background:
+    radial-gradient(ellipse 42rem 28rem at calc(50% + 19rem) 12rem, rgba(10, 132, 255, 0.10), rgba(10, 132, 255, 0.025) 48%, transparent 72%),
+    radial-gradient(ellipse 34rem 25rem at calc(50% - 22rem) 20rem, rgba(175, 82, 222, 0.055), transparent 70%),
+    var(--apple-bg);
+  background-repeat: no-repeat;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -169,8 +177,43 @@ a:hover { color: var(--apple-blue); }
 
 #aside-content { display: none; }
 
+.portfolio-home-hero {
+  max-width: 700px;
+  margin: 0 0 4.75rem;
+  padding: 2.25rem 0.25rem 0;
+}
+
+.portfolio-home-eyebrow,
+.portfolio-section-kicker {
+  margin: 0 0 0.65rem;
+  color: var(--apple-tertiary);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 550;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+}
+
+.portfolio-home-hero h1 {
+  max-width: 680px;
+  margin: 0;
+  color: var(--apple-text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(2.65rem, 7vw, 4.25rem);
+  font-weight: 650;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+}
+
+.portfolio-home-description {
+  margin: 1.35rem 0 0;
+  color: var(--apple-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
 .portfolio-categories {
-  margin-bottom: 2.75rem;
+  margin-bottom: 4.5rem;
   scroll-margin-top: 5rem;
 }
 
@@ -178,74 +221,190 @@ a:hover { color: var(--apple-blue); }
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.35rem;
   padding: 0 0.25rem;
 }
+
+.portfolio-section-heading .portfolio-section-kicker { margin-bottom: 0.35rem; }
 
 .portfolio-section-heading h1,
 .portfolio-section-heading h2 {
   margin: 0;
   color: var(--apple-text);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   font-weight: 650;
   letter-spacing: -0.025em;
   line-height: 1.2;
 }
 
-.portfolio-category-grid {
+.portfolio-category-panel {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-.portfolio-category-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 0;
-  min-height: 9rem;
-  padding: 1.15rem;
+  overflow: hidden;
   background: var(--apple-surface);
-  border: 0;
-  border-radius: 18px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 8px 32px rgba(0, 0, 0, 0.035);
+  border: 1px solid rgba(0, 0, 0, 0.055);
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025), 0 12px 36px rgba(0, 0, 0, 0.028);
 }
 
-.portfolio-category-card:hover { color: var(--apple-blue); }
+.portfolio-category-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+  min-height: 6rem;
+  padding: 1.2rem 1.25rem;
+  color: var(--apple-text);
+  background: transparent;
+  border-right: 1px solid var(--apple-separator);
+  border-bottom: 1px solid var(--apple-separator);
+}
+
+.portfolio-category-item:nth-child(3n) { border-right: 0; }
+.portfolio-category-item:nth-last-child(-n + 3) { border-bottom: 0; }
+
+.portfolio-category-item:hover {
+  color: var(--apple-text);
+  background: rgba(0, 0, 0, 0.018);
+}
 
 .portfolio-category-icon {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-bottom: auto;
+  width: 2.35rem;
+  height: 2.35rem;
   color: var(--apple-text);
-  font-size: 1rem;
+  font-size: 0.88rem;
   background: var(--apple-bg);
-  border-radius: 11px;
+  border-radius: 10px;
 }
 
-.portfolio-category-card:hover .portfolio-category-icon { color: var(--apple-blue); }
+.portfolio-category-item:hover .portfolio-category-icon { color: var(--apple-blue); }
+
+.portfolio-category-copy {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
 
 .portfolio-category-name {
-  margin-top: 1rem;
   color: var(--apple-text);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.25;
 }
 
 .portfolio-category-count {
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
   color: var(--apple-tertiary);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   line-height: 1.2;
 }
 
-.portfolio-latest-heading { margin-top: 0.25rem; }
+.portfolio-category-arrow {
+  flex: 0 0 auto;
+  color: #b5b5ba;
+  font-size: 0.62rem;
+}
+
+.portfolio-category-item:hover .portfolio-category-arrow { color: var(--apple-blue); }
+
+.portfolio-latest { margin-bottom: 1.5rem; }
+
+.portfolio-latest-heading { margin-top: 0; }
+
+.portfolio-home-work-list {
+  overflow: hidden;
+  background: var(--apple-surface);
+  border: 1px solid rgba(0, 0, 0, 0.055);
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025), 0 12px 36px rgba(0, 0, 0, 0.028);
+}
+
+.portfolio-home-work {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  min-width: 0;
+  padding: 1.8rem 1.9rem 1.85rem;
+  color: var(--apple-text);
+}
+
+.portfolio-home-work:not(:last-child)::after {
+  position: absolute;
+  right: 1.9rem;
+  bottom: 0;
+  left: 1.9rem;
+  height: 1px;
+  background: var(--apple-separator);
+  content: "";
+}
+
+.portfolio-home-work:hover {
+  color: var(--apple-text);
+  background: rgba(0, 0, 0, 0.018);
+}
+
+.portfolio-home-work-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.portfolio-home-work-category {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--apple-tertiary);
+  font-size: 0.69rem;
+  font-weight: 550;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.portfolio-home-work-title {
+  margin: 0;
+  color: var(--apple-text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(1.25rem, 3vw, 1.55rem);
+  font-weight: 620;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+.portfolio-home-work-summary {
+  display: -webkit-box;
+  margin: 0.65rem 0 0;
+  overflow: hidden;
+  color: var(--apple-secondary);
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", STSong, SimSun, serif;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.portfolio-home-work-arrow {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--apple-tertiary);
+  font-size: 0.72rem;
+  background: var(--apple-bg);
+  border-radius: 50%;
+}
+
+.portfolio-home-work:hover .portfolio-home-work-arrow {
+  color: #fff;
+  background: var(--apple-blue);
+}
 
 #category.portfolio-category-page {
   padding: 0;
@@ -637,6 +796,14 @@ a:hover { color: var(--apple-blue); }
 }
 
 @media (max-width: 768px) {
+  body:has(#portfolio-home) {
+    background:
+      radial-gradient(ellipse 24rem 20rem at 100% 8rem, rgba(10, 132, 255, 0.085), transparent 72%),
+      radial-gradient(ellipse 21rem 18rem at -4rem 18rem, rgba(175, 82, 222, 0.045), transparent 70%),
+      var(--apple-bg);
+    background-repeat: no-repeat;
+  }
+
   #page-header.not-top-img,
   #page-header.not-top-img #nav { height: 3rem; }
 
@@ -644,28 +811,64 @@ a:hover { color: var(--apple-blue); }
 
   #content-inner { padding: 1.25rem 0.75rem 3rem; }
 
-  .portfolio-categories { margin-bottom: 2.25rem; }
+  .portfolio-home-hero {
+    margin-bottom: 3.5rem;
+    padding: 1.75rem 0.15rem 0;
+  }
+
+  .portfolio-home-hero h1 {
+    font-size: clamp(2.35rem, 11vw, 3.2rem);
+    letter-spacing: -0.05em;
+  }
+
+  .portfolio-home-description { margin-top: 1rem; }
+
+  .portfolio-categories { margin-bottom: 3.5rem; }
 
   .portfolio-section-heading { padding: 0 0.15rem; }
 
   .portfolio-section-heading h1,
   .portfolio-section-heading h2 { font-size: 1.3rem; }
 
-  .portfolio-category-grid {
+  .portfolio-category-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.65rem;
-  }
-
-  .portfolio-category-card {
-    min-height: 7.75rem;
-    padding: 1rem;
     border-radius: 16px;
   }
 
-  .portfolio-category-icon {
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 10px;
+  .portfolio-category-item {
+    min-height: 5.5rem;
+    padding: 1rem;
+    border-right: 1px solid var(--apple-separator);
+    border-bottom: 1px solid var(--apple-separator);
+  }
+
+  .portfolio-category-item:nth-child(3n) { border-right: 1px solid var(--apple-separator); }
+  .portfolio-category-item:nth-last-child(-n + 3) { border-bottom: 1px solid var(--apple-separator); }
+  .portfolio-category-item:nth-child(2n) { border-right: 0; }
+  .portfolio-category-item:nth-last-child(-n + 2) { border-bottom: 0; }
+
+  .portfolio-category-arrow { display: none; }
+
+  .portfolio-home-work-list { border-radius: 16px; }
+
+  .portfolio-home-work {
+    gap: 1rem;
+    padding: 1.45rem 1.25rem 1.5rem;
+  }
+
+  .portfolio-home-work:not(:last-child)::after {
+    right: 1.25rem;
+    left: 1.25rem;
+  }
+
+  .portfolio-home-work-summary {
+    font-size: 0.91rem;
+    line-height: 1.7;
+  }
+
+  .portfolio-home-work-arrow {
+    width: 1.85rem;
+    height: 1.85rem;
   }
 
   .portfolio-category-page-title {
@@ -722,8 +925,11 @@ a:hover { color: var(--apple-blue); }
 @media (prefers-contrast: more) {
   :root { --apple-separator: rgba(0, 0, 0, 0.28); }
 
+  body:has(#portfolio-home) { background: var(--apple-bg); }
+
   #page-header.not-top-img::after,
-  .portfolio-category-card,
+  .portfolio-category-panel,
+  .portfolio-home-work-list,
   .portfolio-category-work-card,
   #recent-posts .recent-post-item,
   #archive,
