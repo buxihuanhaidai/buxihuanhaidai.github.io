@@ -247,8 +247,14 @@ a:hover { color: var(--apple-blue); }
 
 .portfolio-latest-heading { margin-top: 0.25rem; }
 
-#category .article-sort-title {
+#category.portfolio-category-page {
+  padding: 0;
+  background: transparent;
+}
+
+.portfolio-category-page-title {
   margin-bottom: 2.25rem;
+  padding: 0 0.25rem;
   color: var(--apple-text);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.35rem);
@@ -257,23 +263,59 @@ a:hover { color: var(--apple-blue); }
   line-height: 1.15;
 }
 
-#category .article-sort-title::before,
-#category .article-sort-title::after { display: none; }
-
-#category .article-sort { border-left-color: var(--apple-separator); }
-
-#category .article-sort-item.year {
-  color: var(--apple-tertiary);
-  font-size: 0.78rem;
-  font-weight: 500;
+.portfolio-category-work-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-#category .article-sort-item-title {
+.portfolio-category-work-card {
+  display: block;
+  padding: 2.1rem 2.35rem;
   color: var(--apple-text);
+  background: var(--apple-surface);
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 8px 32px rgba(0, 0, 0, 0.035);
+}
+
+.portfolio-category-work-card:hover {
+  color: var(--apple-text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.045), 0 12px 36px rgba(0, 0, 0, 0.055);
+}
+
+.portfolio-category-work-title {
+  margin: 0;
+  color: var(--apple-text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(1.35rem, 3vw, 1.65rem);
+  font-weight: 620;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+.portfolio-category-work-summary {
+  display: -webkit-box;
+  margin: 0.8rem 0 0;
+  overflow: hidden;
+  color: var(--apple-secondary);
+  font-family: "Songti SC", "Noto Serif SC", SimSun, serif;
+  font-size: 0.98rem;
+  line-height: 1.85;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.portfolio-category-work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+  color: var(--apple-blue);
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
-#category .article-sort-item-title:hover { color: var(--apple-blue); }
+.portfolio-category-work-link i { font-size: 0.68rem; }
 
 .portfolio-empty-state {
   display: flex;
@@ -296,7 +338,7 @@ a:hover { color: var(--apple-blue); }
 }
 
 #recent-posts .recent-post-item,
-.layout > div:first-child:not(.recent-posts):not(#portfolio-home),
+.layout > div:first-child:not(.recent-posts):not(#portfolio-home):not(#category),
 #archive,
 #page,
 #post {
@@ -626,6 +668,21 @@ a:hover { color: var(--apple-blue); }
     border-radius: 10px;
   }
 
+  .portfolio-category-page-title {
+    margin-bottom: 1.5rem;
+    padding: 0 0.15rem;
+  }
+
+  .portfolio-category-work-card {
+    padding: 1.65rem 1.4rem;
+    border-radius: 16px;
+  }
+
+  .portfolio-category-work-summary {
+    font-size: 0.94rem;
+    line-height: 1.8;
+  }
+
   #recent-posts .recent-post-item {
     padding: 1.75rem 1.4rem;
     border-radius: 16px;
@@ -667,6 +724,7 @@ a:hover { color: var(--apple-blue); }
 
   #page-header.not-top-img::after,
   .portfolio-category-card,
+  .portfolio-category-work-card,
   #recent-posts .recent-post-item,
   #archive,
   #page,
