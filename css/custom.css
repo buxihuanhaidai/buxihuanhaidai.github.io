@@ -177,46 +177,24 @@ a:hover { color: var(--apple-blue); }
   box-shadow: none;
 }
 
-#portfolio-home::before,
-#portfolio-home::after {
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-  content: "";
-}
-
-#portfolio-home::before {
-  top: 2rem;
-  right: -17rem;
-  width: 31rem;
-  height: 31rem;
-  border: 1px solid rgba(0, 102, 204, 0.095);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 5rem rgba(0, 102, 204, 0.018),
-    0 0 0 10rem rgba(175, 82, 222, 0.012);
-}
-
-#portfolio-home::after {
-  top: 33rem;
-  left: -22rem;
-  width: 38rem;
-  height: 24rem;
-  border-top: 1px solid rgba(175, 82, 222, 0.08);
-  border-right: 1px solid rgba(0, 102, 204, 0.06);
-  border-radius: 0 100% 0 0;
-  transform: rotate(-8deg);
-}
-
 #aside-content { display: none; }
 
 .portfolio-home-hero {
-  max-width: 700px;
-  margin: 0 0 4.75rem;
-  padding: 2.25rem 0.25rem 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(24rem, 1.18fr);
+  align-items: center;
+  min-height: 25rem;
+  margin: 0 0 4.5rem;
+  padding: 1.5rem 0.25rem 0;
 }
 
-.portfolio-home-eyebrow,
+.portfolio-home-intro {
+  position: relative;
+  z-index: 1;
+  padding-left: 0.15rem;
+}
+
 .portfolio-section-kicker {
   margin: 0 0 0.65rem;
   color: var(--apple-tertiary);
@@ -228,21 +206,115 @@ a:hover { color: var(--apple-blue); }
 }
 
 .portfolio-home-hero h1 {
-  max-width: 680px;
   margin: 0;
   color: var(--apple-text);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: clamp(2.65rem, 7vw, 4.25rem);
-  font-weight: 650;
-  letter-spacing: -0.055em;
-  line-height: 1.08;
+  line-height: 1;
+}
+
+.portfolio-home-name,
+.portfolio-home-kind {
+  display: block;
+}
+
+.portfolio-home-name {
+  font-size: clamp(3.1rem, 7vw, 5.15rem);
+  font-weight: 680;
+  letter-spacing: -0.065em;
+}
+
+.portfolio-home-kind {
+  margin-top: 0.7rem;
+  color: #48484a;
+  font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+  font-weight: 520;
+  letter-spacing: -0.035em;
 }
 
 .portfolio-home-description {
-  margin: 1.35rem 0 0;
+  margin: 1.4rem 0 0;
   color: var(--apple-secondary);
-  font-size: 1rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
   line-height: 1.6;
+}
+
+.portfolio-home-art {
+  position: relative;
+  width: calc(100% + 5rem);
+  margin-left: -1.5rem;
+  color: var(--apple-blue);
+}
+
+.portfolio-home-art::before {
+  position: absolute;
+  top: 19%;
+  right: 9%;
+  width: 11rem;
+  height: 11rem;
+  background: rgba(10, 132, 255, 0.065);
+  border-radius: 50%;
+  filter: blur(42px);
+  content: "";
+}
+
+.portfolio-home-art svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.portfolio-line,
+.portfolio-axis,
+.portfolio-orbit-ring {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.portfolio-line-primary {
+  stroke: rgba(0, 102, 204, 0.42);
+  stroke-width: 1.35;
+}
+
+.portfolio-line-secondary {
+  stroke: rgba(29, 29, 31, 0.22);
+  stroke-width: 1;
+}
+
+.portfolio-line-faint {
+  stroke: rgba(175, 82, 222, 0.21);
+  stroke-width: 1;
+}
+
+.portfolio-line-loop {
+  stroke: rgba(0, 102, 204, 0.16);
+  stroke-width: 1;
+}
+
+.portfolio-line-short {
+  stroke: rgba(29, 29, 31, 0.13);
+  stroke-dasharray: 3 7;
+  stroke-width: 1;
+}
+
+.portfolio-orbit-dot {
+  fill: #fff;
+  stroke: rgba(0, 102, 204, 0.65);
+  stroke-width: 1.25;
+}
+
+.portfolio-orbit-ring {
+  stroke: rgba(175, 82, 222, 0.38);
+  stroke-width: 1;
+}
+
+.portfolio-axis {
+  stroke: rgba(29, 29, 31, 0.17);
+  stroke-width: 1;
 }
 
 .portfolio-categories {
@@ -867,31 +939,39 @@ a:hover { color: var(--apple-blue); }
   #content-inner { padding: 1.25rem 0.75rem 3rem; }
 
   .portfolio-home-hero {
-    margin-bottom: 3.5rem;
-    padding: 1.75rem 0.15rem 0;
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 29rem;
+    margin-bottom: 3.25rem;
+    padding: 2rem 0.15rem 0;
+    overflow: hidden;
   }
 
-  #portfolio-home::before {
-    top: 1rem;
-    right: -16rem;
-    width: 25rem;
-    height: 25rem;
-    box-shadow: 0 0 0 4rem rgba(0, 102, 204, 0.014);
+  .portfolio-home-intro {
+    z-index: 2;
+    align-self: start;
+    padding-top: 1.2rem;
   }
 
-  #portfolio-home::after {
-    top: 31rem;
-    left: -17rem;
-    width: 24rem;
-    height: 17rem;
+  .portfolio-home-art {
+    position: absolute;
+    top: 8.25rem;
+    right: -8.5rem;
+    z-index: 1;
+    width: 31rem;
+    margin: 0;
+    opacity: 0.82;
   }
 
-  .portfolio-home-hero h1 {
-    font-size: clamp(2.35rem, 11vw, 3.2rem);
-    letter-spacing: -0.05em;
+  .portfolio-home-name {
+    font-size: clamp(3.25rem, 17vw, 4.25rem);
   }
 
-  .portfolio-home-description { margin-top: 1rem; }
+  .portfolio-home-kind {
+    margin-top: 0.55rem;
+    font-size: 1.35rem;
+  }
+
+  .portfolio-home-description { margin-top: 1.15rem; }
 
   .portfolio-categories { margin-bottom: 3.5rem; }
 
@@ -996,8 +1076,7 @@ a:hover { color: var(--apple-blue); }
   :root { --apple-separator: rgba(0, 0, 0, 0.28); }
 
   body:has(#portfolio-home) { background: var(--apple-bg); }
-  #portfolio-home::before,
-  #portfolio-home::after { display: none; }
+  .portfolio-home-art { opacity: 0.45; }
 
   #page-header.not-top-img::after,
   .portfolio-category-panel,
