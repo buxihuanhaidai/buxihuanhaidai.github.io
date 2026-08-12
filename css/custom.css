@@ -167,12 +167,45 @@ a:hover { color: var(--apple-blue); }
 .layout > div:first-child:not(.recent-posts):not(#portfolio-home) { width: 100%; }
 
 #portfolio-home {
+  position: relative;
+  isolation: isolate;
   width: 100%;
   padding: 0;
   background: transparent;
   border: 0;
   border-radius: 0;
   box-shadow: none;
+}
+
+#portfolio-home::before,
+#portfolio-home::after {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+}
+
+#portfolio-home::before {
+  top: 2rem;
+  right: -17rem;
+  width: 31rem;
+  height: 31rem;
+  border: 1px solid rgba(0, 102, 204, 0.095);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 5rem rgba(0, 102, 204, 0.018),
+    0 0 0 10rem rgba(175, 82, 222, 0.012);
+}
+
+#portfolio-home::after {
+  top: 33rem;
+  left: -22rem;
+  width: 38rem;
+  height: 24rem;
+  border-top: 1px solid rgba(175, 82, 222, 0.08);
+  border-right: 1px solid rgba(0, 102, 204, 0.06);
+  border-radius: 0 100% 0 0;
+  transform: rotate(-8deg);
 }
 
 #aside-content { display: none; }
@@ -566,6 +599,28 @@ a:hover { color: var(--apple-blue); }
   text-shadow: none;
 }
 
+.portfolio-title-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.portfolio-title-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.65rem;
+  padding: 0.16rem 0.65rem;
+  color: #505057;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  background: #f0f0f2;
+  border: 1px solid rgba(0, 0, 0, 0.035);
+  border-radius: 999px;
+}
+
 #post-info #post-meta {
   margin-top: 1rem;
   color: var(--apple-tertiary);
@@ -816,6 +871,21 @@ a:hover { color: var(--apple-blue); }
     padding: 1.75rem 0.15rem 0;
   }
 
+  #portfolio-home::before {
+    top: 1rem;
+    right: -16rem;
+    width: 25rem;
+    height: 25rem;
+    box-shadow: 0 0 0 4rem rgba(0, 102, 204, 0.014);
+  }
+
+  #portfolio-home::after {
+    top: 31rem;
+    left: -17rem;
+    width: 24rem;
+    height: 17rem;
+  }
+
   .portfolio-home-hero h1 {
     font-size: clamp(2.35rem, 11vw, 3.2rem);
     letter-spacing: -0.05em;
@@ -926,6 +996,8 @@ a:hover { color: var(--apple-blue); }
   :root { --apple-separator: rgba(0, 0, 0, 0.28); }
 
   body:has(#portfolio-home) { background: var(--apple-bg); }
+  #portfolio-home::before,
+  #portfolio-home::after { display: none; }
 
   #page-header.not-top-img::after,
   .portfolio-category-panel,
