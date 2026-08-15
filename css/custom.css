@@ -73,8 +73,8 @@ body {
   content: "";
 }
 
-.portfolio-book-margin-left { left: max(2.25rem, calc(50% - 33rem)); }
-.portfolio-book-margin-right { right: max(2.25rem, calc(50% - 33rem)); }
+.portfolio-book-margin-left { left: max(1.5rem, calc(50% - 35.5rem)); }
+.portfolio-book-margin-right { right: max(1.5rem, calc(50% - 35.5rem)); }
 .portfolio-book-margin-left::after { left: -1px; }
 .portfolio-book-margin-right::after { right: -1px; top: 31rem; }
 
@@ -708,13 +708,162 @@ a:hover { color: var(--apple-blue); }
 }
 
 #category.portfolio-category-page {
+  --portfolio-theme-bg: #f5f5f7;
+  --portfolio-theme-line: #c8c8c8;
+  --portfolio-theme-line-opacity: 0.13;
   padding: 0;
   background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
 }
 
+body:has(#category.portfolio-theme-wuxia) { background: #efe7dd; }
+body:has(#category.portfolio-theme-xianxia) { background: #e5eae5; }
+body:has(#category.portfolio-theme-science-fiction) { background: #e3e7ea; }
+body:has(#category.portfolio-theme-western-fantasy) { background: #e9e3db; }
+body:has(#category.portfolio-theme-anime) { background: #efe6e7; }
+body:has(#category.portfolio-theme-poetry) { background: #e8e9e3; }
+
+body:has(#post.portfolio-theme-wuxia) { background: #f6f1eb; }
+body:has(#post.portfolio-theme-xianxia) { background: #eef0ed; }
+body:has(#post.portfolio-theme-science-fiction) { background: #eceef0; }
+body:has(#post.portfolio-theme-western-fantasy) { background: #f0ede8; }
+body:has(#post.portfolio-theme-anime) { background: #f5f0f0; }
+body:has(#post.portfolio-theme-poetry) { background: #f0f0ec; }
+
+#category.portfolio-theme-wuxia, #post.portfolio-theme-wuxia { --portfolio-theme-bg: #f6f1eb; --portfolio-theme-line: #d0c5b8; --portfolio-theme-secondary-line: #c8bdb0; --portfolio-theme-line-opacity: 0.25; --portfolio-theme-secondary-opacity: 0.15; }
+#category.portfolio-theme-xianxia, #post.portfolio-theme-xianxia { --portfolio-theme-bg: #eef0ed; --portfolio-theme-line: #c8d0c8; --portfolio-theme-secondary-line: #c5ccc5; --portfolio-theme-line-opacity: 0.15; --portfolio-theme-secondary-opacity: 0.12; }
+#category.portfolio-theme-science-fiction, #post.portfolio-theme-science-fiction { --portfolio-theme-bg: #eceef0; --portfolio-theme-line: #c8ccd0; --portfolio-theme-secondary-line: #c5c9ce; --portfolio-theme-line-opacity: 0.15; --portfolio-theme-secondary-opacity: 0.12; }
+#category.portfolio-theme-western-fantasy, #post.portfolio-theme-western-fantasy { --portfolio-theme-bg: #f0ede8; --portfolio-theme-line: #d0c8bc; --portfolio-theme-secondary-line: #c8c0b5; --portfolio-theme-line-opacity: 0.15; --portfolio-theme-secondary-opacity: 0.12; }
+#category.portfolio-theme-anime, #post.portfolio-theme-anime { --portfolio-theme-bg: #f5f0f0; --portfolio-theme-line: #d8c8c8; --portfolio-theme-secondary-line: #d0c0c0; --portfolio-theme-line-opacity: 0.12; --portfolio-theme-secondary-opacity: 0.15; }
+#category.portfolio-theme-poetry, #post.portfolio-theme-poetry { --portfolio-theme-bg: #f0f0ec; --portfolio-theme-line: #d0ccc5; --portfolio-theme-secondary-line: #c8c4bc; --portfolio-theme-line-opacity: 0.10; --portfolio-theme-secondary-opacity: 0.12; }
+
+#category.portfolio-theme-wuxia { --portfolio-theme-line: #ab9a88; --portfolio-theme-secondary-line: #b3a493; --portfolio-theme-line-opacity: 0.52; --portfolio-theme-secondary-opacity: 0.38; }
+#category.portfolio-theme-xianxia { --portfolio-theme-line: #a4b0a4; --portfolio-theme-secondary-line: #abb6ab; --portfolio-theme-line-opacity: 0.46; --portfolio-theme-secondary-opacity: 0.36; }
+#category.portfolio-theme-science-fiction { --portfolio-theme-line: #a4adb6; --portfolio-theme-secondary-line: #abb3bb; --portfolio-theme-line-opacity: 0.48; --portfolio-theme-secondary-opacity: 0.38; }
+#category.portfolio-theme-western-fantasy { --portfolio-theme-line: #ad9f8c; --portfolio-theme-secondary-line: #b0a18e; --portfolio-theme-line-opacity: 0.47; --portfolio-theme-secondary-opacity: 0.36; }
+#category.portfolio-theme-anime { --portfolio-theme-line: #b9a1a5; --portfolio-theme-secondary-line: #b5a0a4; --portfolio-theme-line-opacity: 0.44; --portfolio-theme-secondary-opacity: 0.40; }
+#category.portfolio-theme-poetry { --portfolio-theme-line: #a9a59c; --portfolio-theme-secondary-line: #aaa69e; --portfolio-theme-line-opacity: 0.39; --portfolio-theme-secondary-opacity: 0.36; }
+
+.portfolio-category-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.portfolio-category-atmosphere svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  color: var(--portfolio-theme-line);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 1;
+}
+
+.portfolio-category-atmosphere path,
+.portfolio-category-atmosphere circle { fill: none; stroke: currentColor; }
+.portfolio-category-atmosphere .atmosphere-primary { opacity: var(--portfolio-theme-line-opacity); }
+.portfolio-category-atmosphere .atmosphere-secondary { color: var(--portfolio-theme-secondary-line); opacity: var(--portfolio-theme-secondary-opacity); }
+
+#category.portfolio-category-page > .portfolio-category-atmosphere {
+  height: 11rem;
+}
+
+#category.portfolio-category-page > .portfolio-category-atmosphere svg {
+  left: 12%;
+  width: 88%;
+  height: 100%;
+  stroke-width: 1.35;
+}
+
+#category.portfolio-category-page > :not(.portfolio-category-atmosphere),
+#post.portfolio-post-page > :not(.portfolio-category-atmosphere) { position: relative; z-index: 1; }
+
+#category.portfolio-category-page .portfolio-category-page-title,
+#category.portfolio-category-page .portfolio-category-work-list,
+#category.portfolio-category-page .portfolio-empty-state {
+  position: relative;
+  z-index: 1;
+}
+
+#category.portfolio-category-page .portfolio-category-work-list {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+#category.portfolio-category-page .portfolio-category-work-card {
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025), 0 8px 28px rgba(0, 0, 0, 0.035);
+}
+
+#post.portfolio-post-page {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(29, 29, 31, 0.045);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025), 0 12px 38px rgba(0, 0, 0, 0.045);
+}
+
+#post.portfolio-post-page > .portfolio-category-atmosphere svg {
+  width: 100%;
+  opacity: 0.72;
+}
+
+#post.portfolio-post-page > #post-info,
+#post.portfolio-post-page > #article-container,
+#post.portfolio-post-page > .portfolio-post-navigation,
+#post.portfolio-post-page > .tag_share,
+#post.portfolio-post-page > .post-copyright {
+  position: relative;
+  z-index: 1;
+}
+
+#post.portfolio-post-page > #post-info .post-title {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+#post.portfolio-theme-wuxia > #post-info .post-title { font-family: Georgia, "Songti SC", STSong, SimSun, serif; font-size: clamp(1.45rem, 4vw, 2rem); font-weight: 600; letter-spacing: 0; }
+#post.portfolio-theme-xianxia > #post-info .post-title { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.35; }
+#post.portfolio-theme-science-fiction > #post-info .post-title { font-family: Monaco, "SFMono-Regular", Consolas, "Courier New", monospace; font-size: clamp(1.25rem, 3.8vw, 1.8rem); font-weight: 600; letter-spacing: 0; }
+#post.portfolio-theme-western-fantasy > #post-info .post-title { font-family: Palatino, "Palatino Linotype", "Songti SC", serif; font-weight: 600; letter-spacing: 0; }
+#post.portfolio-theme-anime > #post-info .post-title { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; font-weight: 750; letter-spacing: 0; }
+#post.portfolio-theme-poetry > #post-info .post-title { font-family: Didot, "Songti SC", STSong, SimSun, serif; font-weight: 400; letter-spacing: 0.07em; }
+
+.portfolio-theme-wuxia > #article-container { font-family: Georgia, "Songti SC", STSong, SimSun, serif; }
+.portfolio-theme-xianxia > #article-container { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 2.05; }
+.portfolio-theme-science-fiction > #article-container { font-family: Monaco, "SFMono-Regular", Consolas, "Courier New", monospace; font-size: 0.98rem; line-height: 1.9; }
+.portfolio-theme-western-fantasy > #article-container { font-family: Palatino, "Palatino Linotype", "Songti SC", serif; line-height: 2.02; }
+.portfolio-theme-anime > #article-container { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+.portfolio-theme-poetry > #article-container { font-family: Didot, "Songti SC", STSong, SimSun, serif; letter-spacing: 0.045em; line-height: 2.05; }
+
+.portfolio-theme-wuxia .portfolio-category-work-title { font-family: Georgia, "Songti SC", STSong, SimSun, serif; font-size: 1rem; font-weight: 600; letter-spacing: 0; }
+.portfolio-theme-xianxia .portfolio-category-work-title { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.45; }
+.portfolio-theme-science-fiction .portfolio-category-work-title { font-family: Monaco, "SFMono-Regular", Consolas, "Courier New", monospace; font-size: 0.94rem; font-weight: 600; letter-spacing: 0; }
+.portfolio-theme-western-fantasy .portfolio-category-work-title { font-family: Palatino, "Palatino Linotype", "Songti SC", serif; font-weight: 600; letter-spacing: 0; }
+.portfolio-theme-anime .portfolio-category-work-title { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; font-weight: 750; letter-spacing: 0; }
+.portfolio-theme-poetry .portfolio-category-work-title { font-family: Didot, "Songti SC", STSong, SimSun, serif; font-weight: 400; letter-spacing: 0.08em; }
+
+.portfolio-theme-xianxia .portfolio-category-work-card { padding-top: 2.3rem; padding-bottom: 2.3rem; }
+.portfolio-theme-western-fantasy .portfolio-category-work-card { padding-top: 2.35rem; padding-bottom: 2.35rem; }
+.portfolio-theme-poetry .portfolio-category-work-card { padding-top: 2.45rem; padding-bottom: 2.45rem; }
+
 .portfolio-category-page-title {
-  margin-bottom: 2.25rem;
-  padding: 0 0.25rem;
+  min-height: 11rem;
+  margin-bottom: 1.25rem;
+  padding: 1.15rem 0.25rem 0;
   color: var(--apple-text);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.35rem);
@@ -1322,8 +1471,16 @@ a:hover { color: var(--apple-blue); }
   }
 
   .portfolio-category-page-title {
-    margin-bottom: 1.5rem;
-    padding: 0 0.15rem;
+    min-height: 9rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 0.15rem 0;
+  }
+
+  #category.portfolio-category-page > .portfolio-category-atmosphere { height: 9rem; }
+
+  #category.portfolio-category-page > .portfolio-category-atmosphere svg {
+    left: 18%;
+    width: 82%;
   }
 
   .portfolio-category-work-card {
