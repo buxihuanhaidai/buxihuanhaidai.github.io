@@ -1273,6 +1273,48 @@ body:has(#post.portfolio-theme-poetry) { background: #f0f0ec; }
   text-indent: 2em;
 }
 
+/* Excel works are rendered as readable row pairs instead of a vertical
+   stream of cells. The number of columns is supplied by the importer for
+   each row, so profile fields and dialogue lines stay aligned side by side. */
+#article-container .portfolio-spreadsheet {
+  margin: 1.5rem 0 2.25rem;
+  text-indent: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.72;
+  overflow-x: auto;
+}
+
+#article-container .portfolio-spreadsheet-row {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  border-bottom: 1px solid var(--apple-separator);
+}
+
+#article-container .portfolio-spreadsheet-row:first-child {
+  border-top: 1px solid var(--apple-separator);
+}
+
+#article-container .portfolio-spreadsheet-cell {
+  min-width: 0;
+  padding: 0.72rem 0.9rem;
+  color: var(--apple-text);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  text-indent: 0;
+}
+
+#article-container .portfolio-spreadsheet-cell + .portfolio-spreadsheet-cell {
+  border-left: 1px solid var(--apple-separator);
+}
+
+@media (max-width: 600px) {
+  #article-container .portfolio-spreadsheet-row[style*="--columns:3"],
+  #article-container .portfolio-spreadsheet-row[style*="--columns:4"],
+  #article-container .portfolio-spreadsheet-row[style*="--columns:5"] {
+    min-width: 40rem;
+  }
+}
+
 #article-container > p:has(> img:only-child),
 #article-container > p:has(> a:only-child > img:only-child) {
   margin: 2rem 0;
